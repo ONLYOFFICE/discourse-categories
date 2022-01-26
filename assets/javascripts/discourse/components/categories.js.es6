@@ -24,6 +24,10 @@ export default Component.extend({
             link: "",
             postCount: 0
         },
+        forms: {
+            link: "",
+            postCount: 0
+        },
         mobile_apps: {
             link: "",
             postCount: 0
