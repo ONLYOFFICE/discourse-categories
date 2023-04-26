@@ -4,7 +4,7 @@ import discourseComputed from "discourse-common/utils/decorators";
 export default Component.extend({
 
     categories: {
-        cloud: {
+        docspace: {
             link: "",
             postCount: 0
         },
