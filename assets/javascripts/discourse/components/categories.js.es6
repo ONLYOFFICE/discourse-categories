@@ -40,7 +40,7 @@ export default Component.extend({
             link: "",
             postCount: 0
         },
-        document_api: {
+        api: {
             link: "",
             postCount: 0
         },
