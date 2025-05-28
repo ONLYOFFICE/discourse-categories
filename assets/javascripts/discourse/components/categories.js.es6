@@ -4,11 +4,39 @@ import discourseComputed from "discourse-common/utils/decorators";
 export default Component.extend({
 
     categories: {
+        suggestions: {
+            link: "",
+            postCount: 0
+        },
+        aiglobal: {
+            link: "",
+            postCount: 0
+        },
         docspace: {
             link: "",
             postCount: 0
         },
         documents: {
+            link: "",
+            postCount: 0
+        },
+        document_api: {
+            link: "",
+            postCount: 0
+        },
+        plugins: {
+            link: "",
+            postCount: 0
+        },
+        pdf: {
+            link: "",
+            postCount: 0
+        },
+        mobile_apps: {
+            link: "",
+            postCount: 0
+        },
+        document_builder: {
             link: "",
             postCount: 0
         },
@@ -21,34 +49,6 @@ export default Component.extend({
             postCount: 0
         },
         desktop_editors: {
-            link: "",
-            postCount: 0
-        },
-        forms: {
-            link: "",
-            postCount: 0
-        },
-        mobile_apps: {
-            link: "",
-            postCount: 0
-        },
-        document_builder: {
-            link: "",
-            postCount: 0
-        },
-        plugins: {
-            link: "",
-            postCount: 0
-        },
-        document_api: {
-            link: "",
-            postCount: 0
-        },
-        news: {
-            link: "",
-            postCount: 0
-        },
-        suggestions: {
             link: "",
             postCount: 0
         }
