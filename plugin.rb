@@ -1,6 +1,6 @@
 # name: onlyoffice-discourse-categories
 # about: Info about count posts in topics categories
-# version: 0.2
+# version: 0.3
 # authors: Ascensio System SIA
 
 enabled_site_setting :onlyoffice_categories_enabled
