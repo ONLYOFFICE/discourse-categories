@@ -1,46 +1,56 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 
-const CATEGORY_CONFIG = [
-  { key: "suggestions", label: "Suggestions", cssClass: "suggestions" },
-  { key: "aiglobal", label: "AI", cssClass: "aiglobal" },
-  { key: "docspace", label: "DocSpace", cssClass: "docspace" },
-  { key: "documents", label: "Docs", cssClass: "documents" },
-  { key: "document_api", label: "API", cssClass: "document_api" },
-  { key: "plugins", label: "Plugins", cssClass: "plugins" },
-  { key: "pdf", label: "PDF", cssClass: "pdf" },
-  { key: "mobile_apps", label: "Mobile Apps", cssClass: "mob_apps" },
-  { key: "document_builder", label: "Document Builder", cssClass: "doc_builder" },
-  { key: "workspace", label: "Workspace", cssClass: "workspace" },
-  { key: "connectors", label: "Connectors", cssClass: "connectors" },
-  { key: "desktop_editors", label: "Desktop Editors", cssClass: "desk_editors" },
-  { key: "resources_hub", label: "Resources Hub", cssClass: "resources_hub" },
-  { key: "news", label: "News", cssClass: "news" },
-];
-
 export default class Categories extends Component {
   @service site;
+  @service siteSettings;
+
+  get categoryKeys() {
+    const configuredKeys = this.siteSettings.discourse_categories_category_keys;
+
+    const keys = Array.isArray(configuredKeys)
+      ? configuredKeys
+      : typeof configuredKeys === "string"
+        ? configuredKeys.split("|")
+        : [];
+
+    return keys
+      .map((key) => key.trim())
+      .filter(Boolean);
+  }
 
   get categories() {
     const categoriesList = this.site.categoriesList;
+
     if (!categoriesList) {
       return [];
     }
 
     const bySlug = {};
+
     Object.values(categoriesList).forEach((category) => {
-      bySlug[category.slug.replace("-", "_")] = category;
+      const key = category.slug.replace(/-/g, "_");
+      bySlug[key] = category;
     });
 
-    return CATEGORY_CONFIG.map(({ key, label, cssClass }) => {
-      const category = bySlug[key];
-      return {
-        label,
-        cssClass,
-        link: category ? `/c/${category.slug}/${category.id}` : "",
-        postCount: category ? category.post_count : 0,
-      };
-    });
+    return this.categoryKeys
+      .map((key) => {
+        const normalizedKey = key.replace(/-/g, "_");
+        const category = bySlug[normalizedKey];
+
+        if (!category) {
+          return null;
+        }
+
+        return {
+          key: normalizedKey,
+          label: category.name,
+          cssClass: `category-${normalizedKey}`,
+          link: `/c/${category.slug}/${category.id}`,
+          postCount: category.post_count ?? 0,
+        };
+      })
+      .filter(Boolean);
   }
 
   <template>

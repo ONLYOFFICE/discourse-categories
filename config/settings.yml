@@ -1,4 +1,10 @@
 plugins:
-  onlyoffice_categories_enabled:
+  discourse_categories_enabled:
     default: true
     client: true
+
+  discourse_categories_category_keys:
+    type: list
+    default: suggestions|aiglobal
+    client: true
+    description: "Slugs of categories to display"
