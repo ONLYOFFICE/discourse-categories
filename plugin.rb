@@ -1,9 +1,9 @@
-# name: onlyoffice-discourse-categories
+# name: discourse-categories
 # about: Info about count posts in topics categories
-# version: 0.3
+# version: 0.4
 # authors: Ascensio System SIA
 
-enabled_site_setting :onlyoffice_categories_enabled
+enabled_site_setting :discourse_categories_enabled
 
 PLUGIN_NAME ||= "onlyoffice-discourse-categories".freeze
 
